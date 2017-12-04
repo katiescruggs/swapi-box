@@ -3,6 +3,7 @@ import Card from '../Card/Card.js';
 import './CardContainer.css';
 
 const CardContainer = ({category, data, addFav, removeFav}) => {
+  console.log(category);
   const cards = () => {
     return data.map(datum => {
       return <Card fav={datum.fav}
@@ -13,7 +14,7 @@ const CardContainer = ({category, data, addFav, removeFav}) => {
                    stats={datum.stats} />
     });
   }
-
+  
   const noCardsMessage = <p className="no-cards-msg">Please select a category</p>;
 
   const display = data ? cards() : noCardsMessage;
