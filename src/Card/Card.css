@@ -1,0 +1,35 @@
+.card {
+  background-color: white;
+  margin: 20px;
+  width: 250px;
+}
+
+.card.fav header {
+  background-color: #7EE056;
+}
+
+.card header {
+  background-color: #3E6CDC;
+  background-color: #567EE0;
+  padding: 15px;
+}
+
+.card-title {
+  margin: 0;
+  text-align: center;
+}
+
+.card-details {
+  display: flex;
+  flex-direction: column;
+  height: 75%;
+  justify-content: space-around;
+  margin: 0;
+  padding: 0;
+}
+
+.card li {
+  text-align: center;
+  list-style-type: none;
+  margin: 15px;
+}

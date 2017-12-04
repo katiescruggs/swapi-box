@@ -1,6 +1,9 @@
 import React from 'react';
+import './Card.css';
 
 const Card = ({fav, category, addFav, removeFav, name, stats}) => {
+
+  const type = fav ? 'card fav' : 'card';
   
   const addRemoveFav = () => {
     fav ? removeFav(name, category) : addFav(name, category);
@@ -12,8 +15,10 @@ const Card = ({fav, category, addFav, removeFav, name, stats}) => {
   });
 
   return (
-    <div className='card' onClick={addRemoveFav}>
-      <h3 className="card-title">{name}</h3>
+    <div className={type} onClick={addRemoveFav}>
+      <header>
+        <h3 className="card-title">{name}</h3>
+      </header>
       <ul className="card-details">
         {statElements}
       </ul>

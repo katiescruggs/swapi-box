@@ -1,4 +1,5 @@
 import React from 'react';
+import './Controls.css';
 
 const Controls = ({chooseCategory}) => {
   return (
@@ -6,6 +7,7 @@ const Controls = ({chooseCategory}) => {
       <button onClick={chooseCategory}>people</button>
       <button onClick={chooseCategory}>planets</button>
       <button onClick={chooseCategory}>vehicles</button>
+      <button onClick={chooseCategory}>favorites</button>
     </div>
   );
 };
