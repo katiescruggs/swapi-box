@@ -1,10 +1,10 @@
 import React from 'react';
 
-const Header = () => {
+const Header = ({chooseCategory}) => {
   return (
     <header>
       <h1>SWAPIbox</h1>
-      <button>Favorites</button>
+      <button onClick={chooseCategory}>favorites</button>
     </header>
   );
 };
