@@ -66,8 +66,10 @@ class App extends Component {
     const {category} = this.state;
     return (
       <div className="App">
-        <Header chooseCategory={this.chooseCategory}/>
-        <Controls chooseCategory={this.chooseCategory}/>
+        <header className="app-header">
+          <Header chooseCategory={this.chooseCategory}/>
+          <Controls chooseCategory={this.chooseCategory}/>
+        </header>
         <CardContainer category={category} data={this.state[category]} addFav={this.addFav} removeFav={this.removeFav} />
       </div>
     );

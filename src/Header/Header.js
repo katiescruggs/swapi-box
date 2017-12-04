@@ -1,10 +1,9 @@
 import React from 'react';
+import './Header.css';
 
 const Header = ({chooseCategory}) => {
   return (
-    <header>
-      <h1>SWAPIbox</h1>
-      <button onClick={chooseCategory}>favorites</button>
+    <header className="main-header">
     </header>
   );
 };
