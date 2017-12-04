@@ -1,0 +1,29 @@
+.card {
+  background-color: white;
+  border: 2px solid black;
+  margin: 20px;
+  width: 250px;
+}
+
+.card header {
+  background-color: #3E6CDC;
+  padding: 10px;
+}
+
+.card-title {
+  margin: 0;
+}
+
+.card-details {
+  display: flex;
+  flex-direction: column;
+  height: 75%;
+  justify-content: space-around;
+  margin: 0;
+  padding: 0;
+}
+
+.card li {
+  list-style-type: none;
+  margin: 10px;
+}

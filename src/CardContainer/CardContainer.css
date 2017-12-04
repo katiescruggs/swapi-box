@@ -1,0 +1,18 @@
+.card-holder {
+  display: flex;
+  justify-content: center;
+}
+
+h2 {
+  border-top: 2px solid #DFDFDF;
+  border-bottom: 2px solid #DFDFDF;
+  color: #DFDFDF;
+  margin: 10px 0 0 0;
+  padding: 10px;
+  text-align: center;
+}
+
+.no-cards-msg {
+  color: #DFDFDF;
+  font-size: 20px;
+}

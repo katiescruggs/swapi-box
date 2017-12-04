@@ -1,0 +1,7 @@
+.main-header {
+  background-image: url('../assets/Star_Wars_Logo.png');
+  background-size: 400px;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 200px;
+}

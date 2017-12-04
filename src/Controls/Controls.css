@@ -1,0 +1,13 @@
+.control-buttons {
+  display: flex;
+  justify-content: space-around;
+  margin: 0 auto;
+  width: 500px;
+}
+
+.control-buttons button {
+  background-color: #FFE919;
+  color: #000000;
+  font-size: 18px;
+  padding: 10px 20px;
+}
