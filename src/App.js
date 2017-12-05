@@ -38,10 +38,40 @@ class App extends Component {
   async componentDidMount() {
     const film = await this.getFilm();
     const people = await this.getPeople();
-    //const planets = 
+    const planets = await this.getPlanets();
     //const vehicles =
 
     this.setState({film, people, planets, vehicles});
+  }
+
+  async getPlanets() {
+    const fetchPlanets = await fetch('https://swapi.co/api/planets');
+    const planetsData = await fetchPlanets.json();
+    return this.formatPlanets(planetsData.results);
+  }
+
+  formatPlanets(planetsArray) {
+    const unresolvedPromises = planetsArray.map(async (planet) => {
+      const {name, terrain, population, climate, residents} = planet;
+        const unresolvedResidents = residents.map(async (resident) => {
+          const residentFetch = await fetch(resident);
+          const residentData = await residentFetch.json();
+          console.log(residentData.name);
+          return residentData.name;
+        });
+        const residentPromises = await Promise.all(unresolvedResidents);
+
+        return {
+          name, 
+          stats: {
+            terrain, 
+            population, 
+            climate, 
+            residents: residentPromises.join(', ')
+          }
+        }
+    });
+    return Promise.all(unresolvedPromises);
   }
 
   async getPeople() {
