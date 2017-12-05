@@ -68,7 +68,7 @@ class App extends Component {
       <div className="App">
         <header className="app-header">
           <Header chooseCategory={this.chooseCategory}/>
-          <Controls chooseCategory={this.chooseCategory}/>
+          <Controls chooseCategory={this.chooseCategory} favorites={this.state.favorites}/>
         </header>
         <CardContainer category={category} data={this.state[category]} addFav={this.addFav} removeFav={this.removeFav} />
       </div>
