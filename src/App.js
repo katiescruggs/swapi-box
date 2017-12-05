@@ -11,11 +11,6 @@ import PersonData from './data/person-data.js';
 import PlanetData from './data/planet-data.js';
 import VehicleData from './data/vehicle-data.js';
 
-const people = [ {name: 'Luke Skywalker', stats: {Homeworld: 'Tatooine', Species: 'Human', Language: 'Galactic Basic', Population: 200000}, fav: false },
-                 {name: 'C-3PO', stats: {Homeworld: 'Tatooine', Species: 'Droid', Language: 'n/a', Population: 200000}, fav: false },
-                 {name: 'R2-D2', stats: {Homeworld: 'Naboo', Species: 'Droid', Language: 'n/a', Population: 45000000}, fav: false }
-               ];
-
 const planets = [ {name: 'Alderaan', stats: {Terrain: 'grasslands, mountains', Population: 20000000, Climate: 'temperate', Residents: ['in', 'an', 'array']}, fav: false},
                   {name: 'Hoth', stats: {Terrain: 'tundra, ice caves, mountain ranges', Population: 'unknown', Climate: 'frozen', Residents: ['in', 'an', 'array']}, fav: false},
                   {name: 'Dagobah', stats: {Terrain: 'swamp, jungles', Population: 'unknown', Climate: 'murky', Residents: ['in', 'an', 'array']}, fav: false}
@@ -42,11 +37,40 @@ class App extends Component {
 
   async componentDidMount() {
     const film = await this.getFilm();
-    //const people =
+    const people = await this.getPeople();
     //const planets = 
     //const vehicles =
 
     this.setState({film, people, planets, vehicles});
+  }
+
+  async getPeople() {
+    const fetchPeople = await fetch('https://swapi.co/api/people');
+    const peopleData = await fetchPeople.json();
+    return this.formatPeople(peopleData.results);
+  }
+
+  async formatPeople(peopleArray) {
+    const unresolvedPromises = peopleArray.map(async (person) => {
+      const {name, homeworld, species} = person;
+      let homeworldFetch = await fetch(person.homeworld);
+      let homeworldData = await homeworldFetch.json();
+
+      let speciesFetch = await fetch(person.species);
+      let speciesData = await speciesFetch.json();
+
+      return {
+        name: person.name, 
+        stats: {
+          homeworld: homeworldData.name,
+          species: speciesData.name,
+          population: homeworldData.population,
+          language: speciesData.language 
+        }
+      }
+    });
+
+    return Promise.all(unresolvedPromises);
   }
 
   async getFilm() {
@@ -116,7 +140,9 @@ class App extends Component {
         {this.state.film.crawl && 
           <ScrollText film={film}/>
         }
-        <CardContainer category={category} data={this.state[category]} addFav={this.addFav} removeFav={this.removeFav} />
+        {this.state.people.length > 0 &&
+          <CardContainer category={category} data={this.state[category]} addFav={this.addFav} removeFav={this.removeFav} />
+        }
       </div>
     );
   }
