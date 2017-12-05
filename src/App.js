@@ -5,6 +5,7 @@ import './App.css';
 import Header from './Header/Header.js';
 import Controls from './Controls/Controls.js';
 import CardContainer from './CardContainer/CardContainer.js';
+import ScrollText from './ScrollText/ScrollText.js';
 
 import PersonData from './data/person-data.js';
 import PlanetData from './data/planet-data.js';
@@ -30,6 +31,7 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
+      film: {},
       category: null,
       people: [],
       planets: [],
@@ -38,8 +40,49 @@ class App extends Component {
     }
   }
 
-  componentDidMount = () => {
-    this.setState({people, planets, vehicles});
+  async componentDidMount() {
+    const film = await this.getFilm();
+    //const people =
+    //const planets = 
+    //const vehicles =
+
+    this.setState({film, people, planets, vehicles});
+  }
+
+  async getFilm() {
+    const { digit, numeral } = this.getRandomFilmNumber();
+    const fetchFilm = await fetch(`https://swapi.co/api/films/${digit}`);
+    const filmData = await fetchFilm.json();
+    return this.formatFilm(filmData, numeral);
+  }
+
+  getRandomFilmNumber(){
+    const digitToNumeral = {
+      1: 'I',
+      2: 'II', 
+      3: 'III', 
+      4: 'IV',
+      5: 'V',
+      6: 'VI',
+      7: 'VII'
+    };
+
+    const digit = Math.floor(Math.random() * 6) + 1;
+    const numeral = digitToNumeral[digit];
+
+    return {digit, numeral};
+  }
+
+  formatFilm(filmData, numeral){
+    const regEx = new RegExp(/\s{3,}/, 'g');
+    let crawl = filmData.opening_crawl.replace(regEx, '###');
+    crawl = crawl.split('###');
+
+    return {
+      episode: `Episode ${numeral}`,
+      title: filmData.title.toUpperCase(), 
+      crawl
+    };
   }
 
   chooseCategory = (e) => {
@@ -63,13 +106,16 @@ class App extends Component {
   }
 
   render() {
-    const {category} = this.state;
+    const {category, film} = this.state;
     return (
       <div className="App">
         <header className="app-header">
           <Header chooseCategory={this.chooseCategory}/>
           <Controls chooseCategory={this.chooseCategory} favorites={this.state.favorites}/>
         </header>
+        {this.state.film.crawl && 
+          <ScrollText film={film}/>
+        }
         <CardContainer category={category} data={this.state[category]} addFav={this.addFav} removeFav={this.removeFav} />
       </div>
     );
