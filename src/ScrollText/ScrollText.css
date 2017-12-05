@@ -1,0 +1,46 @@
+.scrolltext-big-container {
+  color: #FFE919;
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  padding: 10px;
+  height: 200px;
+  overflow: hidden;
+  perspective: 400px;
+  width: 600px;
+}
+
+.scrolltext-small-container {
+  position: relative;
+  top: -100px;
+  transform-origin: 50% 100%;
+  animation: crawl 180s linear;
+}
+
+@keyframes crawl {
+  0% {
+    top: 0;
+    transform: rotateX(20deg) translateZ(0);
+  }
+  100% {
+    top: -6000px;
+    min-height: 0px;
+    transform: rotateX(25deg) translateZ(-2500px);
+  }
+}
+
+.scroll-h3,
+.scroll-h4 {
+  font-size: 40px;
+  text-align: center;
+}
+
+.scroll-h4 {
+  font-size: 24px;
+}
+
+.scroll-p {
+  font-size: 24px;
+  text-align: justify;
+  line-height: 1.5;
+}
