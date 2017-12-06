@@ -7,21 +7,6 @@ import Controls from './Controls/Controls.js';
 import CardContainer from './CardContainer/CardContainer.js';
 import ScrollText from './ScrollText/ScrollText.js';
 
-import PersonData from './data/person-data.js';
-import PlanetData from './data/planet-data.js';
-import VehicleData from './data/vehicle-data.js';
-
-const planets = [ {name: 'Alderaan', stats: {Terrain: 'grasslands, mountains', Population: 20000000, Climate: 'temperate', Residents: ['in', 'an', 'array']}, fav: false},
-                  {name: 'Hoth', stats: {Terrain: 'tundra, ice caves, mountain ranges', Population: 'unknown', Climate: 'frozen', Residents: ['in', 'an', 'array']}, fav: false},
-                  {name: 'Dagobah', stats: {Terrain: 'swamp, jungles', Population: 'unknown', Climate: 'murky', Residents: ['in', 'an', 'array']}, fav: false}
-                ];
-
-const vehicles = [ {name: 'Sand Crawler', stats: {Model: 'Digger Crawler', Class: 'wheeled', 'Number of Passengers': 30}, fav: false},
-                   {name: 'T-16 Skyhopper', stats: {Model: 'T-16 Skyhopper', Class: 'repulsorcraft', 'Number of Passengers': 1}, fav: false},
-                   {name: 'TIE Bomber', stats: {Model: 'TIE/sa bomber', Class: 'space/planetary bomber', 'Number of Passengers': 0}, fav: false}
-                 ];
-
-
 class App extends Component {
   constructor() {
     super();
@@ -39,9 +24,30 @@ class App extends Component {
     const film = await this.getFilm();
     const people = await this.getPeople();
     const planets = await this.getPlanets();
-    //const vehicles =
+    const vehicles = await this.getVehicles();
 
     this.setState({film, people, planets, vehicles});
+  }
+
+  async getVehicles() {
+    const fetchVehicles = await fetch('https://swapi.co/api/vehicles');
+    const vehiclesData = await fetchVehicles.json();
+    return this.formatVehicles(vehiclesData.results);
+  }
+
+  formatVehicles(vehiclesArray) {
+    return vehiclesArray.map(vehicle => {
+      const { name, model, vehicle_class, passengers } = vehicle;
+      return {
+        name,
+        stats: {
+          model,
+          class: vehicle_class,
+          passengers
+        }
+
+      }
+    });
   }
 
   async getPlanets() {
@@ -67,7 +73,7 @@ class App extends Component {
             terrain, 
             population, 
             climate, 
-            residents: residentPromises.join(', ')
+            residents: residentPromises.join(', ') || 'none'
           }
         }
     });
@@ -80,7 +86,7 @@ class App extends Component {
     return this.formatPeople(peopleData.results);
   }
 
-  async formatPeople(peopleArray) {
+  formatPeople(peopleArray) {
     const unresolvedPromises = peopleArray.map(async (person) => {
       const {name, homeworld, species} = person;
       let homeworldFetch = await fetch(person.homeworld);
