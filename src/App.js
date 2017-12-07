@@ -34,19 +34,13 @@ class App extends Component {
     this.setState({category: e.target.innerText});
   }
 
-  addFav = (name, category) => {
+  toggleFav = (name, category) => {
     const favCard = this.state[category].find(obj => obj.name === name);
-    favCard.fav = true;
+    favCard.fav = !favCard.fav;
 
-    const newFavorites = [...this.state.favorites, favCard];
-    this.setState({favorites: newFavorites});
-  }
-
-  removeFav = (name, category) => {
-    const favCard = this.state[category].find(obj => obj.name === name);
-    favCard.fav = false;
-
-    const newFavorites = this.state.favorites.filter(fav => fav.name !== name);
+    const newFavorites = favCard.fav ? 
+      [...this.state.favorites, favCard] 
+      : this.state.favorites.filter(fav => fav.name !== name);
     this.setState({favorites: newFavorites});
   }
 
@@ -68,8 +62,7 @@ class App extends Component {
           <CardContainer 
             category={category} 
             data={this.state[category]} 
-            addFav={this.addFav} 
-            removeFav={this.removeFav} 
+            toggleFav={this.toggleFav} 
           />
         }
       </div>
