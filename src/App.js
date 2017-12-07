@@ -54,7 +54,7 @@ class App extends Component {
     return (
       <div className="App">
         <header className="app-header">
-          <Header chooseCategory={this.chooseCategory}/>
+          <Header />
           <Controls 
             chooseCategory={this.chooseCategory} 
             favorites={this.state.favorites}

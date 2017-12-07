@@ -1,7 +1,7 @@
 import React from 'react';
 import './Header.css';
 
-const Header = ({chooseCategory}) => {
+const Header = () => {
   return (
     <header className="main-header">
     </header>

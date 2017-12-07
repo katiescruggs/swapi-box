@@ -4,7 +4,7 @@ import MaleIcon from 'react-icons/lib/fa/male';
 import GlobeIcon from 'react-icons/lib/fa/globe';
 import AutoIcon from 'react-icons/lib/fa/automobile';
 import StarIcon from 'react-icons/lib/fa/star';
-
+import PropTypes from 'prop-types';
 
 
 const Controls = ({chooseCategory, favorites}) => {
@@ -39,3 +39,8 @@ const Controls = ({chooseCategory, favorites}) => {
 };
 
 export default Controls;
+
+Controls.propTypes = {
+  chooseCategory: PropTypes.func,
+  favorites: PropTypes.array
+};
