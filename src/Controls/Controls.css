@@ -2,12 +2,37 @@
   display: flex;
   justify-content: space-around;
   margin: 0 auto;
-  width: 500px;
+  width: 600px;
 }
 
 .control-buttons button {
   background-color: #FFE919;
+  border: none;
   color: #000000;
   font-size: 18px;
   padding: 10px 20px;
+}
+
+.control-buttons button:hover {
+  background-color: #FFF16F;
+}
+
+.control-buttons button:focus {
+  background-color: #DFCC16;
+  outline:0;
+}
+
+.icon {
+  margin-right: 10px;
+}
+
+.control-buttons .fav-button {
+  padding-right: 3px;
+}
+
+.fav-num {
+  background-color: gray;
+  color: white;
+  margin-left: 10px;
+  padding: 7px 10px;
 }
