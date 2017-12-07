@@ -68,12 +68,7 @@ export const getPlanets = async() => {
 const formatPlanets = (planetsArray) => {
   const unresolvedPromises = planetsArray.map(async (planet) => {
     const {name, terrain, population, climate, residents} = planet;
-      //separate 2nd map into its own function
-      const unresolvedResidents = residents.map(async (resident) => {
-        const residentData = await fetchAndJson(resident);
-        return residentData.name;
-      });
-      const residentPromises = await Promise.all(unresolvedResidents);
+      const residentPromises = await fetchPlanetResidents(residents);
 
       return {
         name, 
@@ -90,6 +85,14 @@ const formatPlanets = (planetsArray) => {
   return Promise.all(unresolvedPromises);
 }
 
+const fetchPlanetResidents = async(residents) => {
+  const unresolvedResidents = residents.map(async (resident) => {
+    const residentData = await fetchAndJson(resident);
+      return residentData.name;
+  });
+  return await Promise.all(unresolvedResidents);  
+}
+
 export const getPeople = async() => {
   const peopleData = await fetchAndJson('https://swapi.co/api/people');
   return formatPeople(peopleData.results);
@@ -99,11 +102,11 @@ const formatPeople = (peopleArray) => {
   const unresolvedPromises = peopleArray.map(async (person) => {
     const {name, homeworld, species} = person;
 
-    let homeworldData = await fetchAndJson(person.homeworld);
-    let speciesData = await fetchAndJson(person.species);
+    let homeworldData = await fetchAndJson(homeworld);
+    let speciesData = await fetchAndJson(species);
 
     return {
-      name: person.name, 
+      name, 
       stats: {
         homeworld: homeworldData.name,
         species: speciesData.name,
@@ -117,4 +120,3 @@ const formatPeople = (peopleArray) => {
 
   return Promise.all(unresolvedPromises);
 }
-
