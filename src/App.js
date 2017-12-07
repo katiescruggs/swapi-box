@@ -48,8 +48,9 @@ class App extends Component {
           model,
           class: vehicle_class,
           passengers
-        }
-
+        },
+        fav: false,
+        cardCat: 'vehicles'
       }
     });
   }
@@ -76,7 +77,9 @@ class App extends Component {
             population, 
             climate, 
             residents: residentPromises.join(', ') || 'none'
-          }
+          },
+          fav: false,
+          cardCat: 'planets'
         }
     });
     return Promise.all(unresolvedPromises);
@@ -101,7 +104,9 @@ class App extends Component {
           species: speciesData.name,
           population: homeworldData.population,
           language: speciesData.language 
-        }
+        },
+        fav: false,
+        cardCat: 'people'
       }
     });
 
