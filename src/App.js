@@ -6,7 +6,12 @@ import Controls from './Controls/Controls.js';
 import CardContainer from './CardContainer/CardContainer.js';
 import ScrollText from './ScrollText/ScrollText.js';
 
-import { getFilm, getPeople, getPlanets, getVehicles } from './apiCalls/apiCalls.js';
+import {
+  getFilm, 
+  getPeople, 
+  getPlanets, 
+  getVehicles 
+} from './apiCalls/apiCalls.js';
 
 class App extends Component {
   constructor() {
@@ -18,7 +23,7 @@ class App extends Component {
       planets: [],
       vehicles: [],
       favorites: []
-    }
+    };
   }
 
   async componentDidMount() {
@@ -30,12 +35,12 @@ class App extends Component {
     this.setState({film, people, planets, vehicles});
   }
 
-  chooseCategory = (e) => {
-    this.setState({category: e.target.innerText});
+  chooseCategory = (event) => {
+    this.setState({category: event.target.innerText});
   }
 
   toggleFav = (name, category) => {
-    const favCard = this.state[category].find(obj => obj.name === name);
+    const favCard = this.state[category].find(item => item.name === name);
     favCard.fav = !favCard.fav;
 
     const newFavorites = favCard.fav ? 
@@ -61,7 +66,7 @@ class App extends Component {
         {this.state.people.length > 0 &&
           <CardContainer 
             category={category} 
-            data={this.state[category]} 
+            cardData={this.state[category]} 
             toggleFav={this.toggleFav} 
           />
         }
