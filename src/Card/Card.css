@@ -4,13 +4,10 @@
   width: 250px;
 }
 
-.card.fav header {
-  background-color: #7EE056;
-}
-
 .card header {
-  background-color: #3E6CDC;
-  background-color: #567EE0;
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
   padding: 15px;
 }
 
@@ -27,6 +24,7 @@
 }
 
 .card-title {
+  display: inline-block;
   margin: 0;
   text-align: center;
 }
@@ -44,4 +42,13 @@
   text-align: center;
   list-style-type: none;
   margin: 15px;
+}
+
+.fav-star-icon {
+  color: #FFE919;
+  font-size: 24px;
+}
+
+.fav-star-icon.open {
+  color: black;
 }
