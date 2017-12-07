@@ -6,7 +6,7 @@ const CardContainer = ({category, data, addFav, removeFav}) => {
   const cards = () => {
     return data.map(datum => {
       return <Card fav={datum.fav}
-                   category={category} 
+                   cardCat={datum.cardCat} 
                    addFav={addFav} 
                    removeFav={removeFav}
                    name={datum.name}

@@ -29,9 +29,13 @@ class App extends Component {
     this.setState({film, people, planets, vehicles});
   }
 
+  async fetchAndJson(apiUrl) {
+    const initialFetch = await fetch(apiUrl);
+    return initialFetch.json();
+  }
+
   async getVehicles() {
-    const fetchVehicles = await fetch('https://swapi.co/api/vehicles');
-    const vehiclesData = await fetchVehicles.json();
+    const vehiclesData = await this.fetchAndJson('https://swapi.co/api/vehicles');
     return this.formatVehicles(vehiclesData.results);
   }
 
@@ -44,25 +48,24 @@ class App extends Component {
           model,
           class: vehicle_class,
           passengers
-        }
-
+        },
+        fav: false,
+        cardCat: 'vehicles'
       }
     });
   }
 
   async getPlanets() {
-    const fetchPlanets = await fetch('https://swapi.co/api/planets');
-    const planetsData = await fetchPlanets.json();
+    const planetsData = await this.fetchAndJson('https://swapi.co/api/planets');
     return this.formatPlanets(planetsData.results);
   }
 
   formatPlanets(planetsArray) {
     const unresolvedPromises = planetsArray.map(async (planet) => {
       const {name, terrain, population, climate, residents} = planet;
+        //separate 2nd map into its own function
         const unresolvedResidents = residents.map(async (resident) => {
-          const residentFetch = await fetch(resident);
-          const residentData = await residentFetch.json();
-          console.log(residentData.name);
+          const residentData = await this.fetchAndJson(resident);
           return residentData.name;
         });
         const residentPromises = await Promise.all(unresolvedResidents);
@@ -74,26 +77,25 @@ class App extends Component {
             population, 
             climate, 
             residents: residentPromises.join(', ') || 'none'
-          }
+          },
+          fav: false,
+          cardCat: 'planets'
         }
     });
     return Promise.all(unresolvedPromises);
   }
 
   async getPeople() {
-    const fetchPeople = await fetch('https://swapi.co/api/people');
-    const peopleData = await fetchPeople.json();
+    const peopleData = await this.fetchAndJson('https://swapi.co/api/people');
     return this.formatPeople(peopleData.results);
   }
 
   formatPeople(peopleArray) {
     const unresolvedPromises = peopleArray.map(async (person) => {
       const {name, homeworld, species} = person;
-      let homeworldFetch = await fetch(person.homeworld);
-      let homeworldData = await homeworldFetch.json();
 
-      let speciesFetch = await fetch(person.species);
-      let speciesData = await speciesFetch.json();
+      let homeworldData = await this.fetchAndJson(person.homeworld);
+      let speciesData = await this.fetchAndJson(person.species);
 
       return {
         name: person.name, 
@@ -102,7 +104,9 @@ class App extends Component {
           species: speciesData.name,
           population: homeworldData.population,
           language: speciesData.language 
-        }
+        },
+        fav: false,
+        cardCat: 'people'
       }
     });
 
@@ -136,7 +140,7 @@ class App extends Component {
   formatFilm(filmData, numeral){
     const regEx = new RegExp(/\s{3,}/, 'g');
     let crawl = filmData.opening_crawl.replace(regEx, '###');
-    crawl = crawl.split('###');
+    crawl = filmData.opening_crawl.split('   ');
 
     return {
       episode: `Episode ${numeral}`,
@@ -171,13 +175,21 @@ class App extends Component {
       <div className="App">
         <header className="app-header">
           <Header chooseCategory={this.chooseCategory}/>
-          <Controls chooseCategory={this.chooseCategory} favorites={this.state.favorites}/>
+          <Controls 
+            chooseCategory={this.chooseCategory} 
+            favorites={this.state.favorites}
+          />
         </header>
         {this.state.film.crawl && 
           <ScrollText film={film}/>
         }
         {this.state.people.length > 0 &&
-          <CardContainer category={category} data={this.state[category]} addFav={this.addFav} removeFav={this.removeFav} />
+          <CardContainer 
+            category={category} 
+            data={this.state[category]} 
+            addFav={this.addFav} 
+            removeFav={this.removeFav} 
+          />
         }
       </div>
     );

@@ -2,12 +2,48 @@
   display: flex;
   justify-content: space-around;
   margin: 0 auto;
-  width: 500px;
+  width: 600px;
 }
 
 .control-buttons button {
   background-color: #FFE919;
+  border: none;
   color: #000000;
   font-size: 18px;
   padding: 10px 20px;
+}
+
+.control-buttons button:hover {
+  background-color: #FFF16F;
+}
+
+.control-buttons button:focus {
+  outline:0;
+}
+
+.people-button:focus {
+  background-color: #567EE0;
+}
+
+.planets-button:focus {
+  background-color: #7EE056;
+}
+
+.vehicles-button:focus {
+  background-color: #E07356;
+}
+
+.icon {
+  margin-right: 10px;
+}
+
+.control-buttons .fav-button {
+  padding-right: 3px;
+}
+
+.fav-num {
+  background-color: gray;
+  color: white;
+  margin-left: 10px;
+  padding: 7px 10px;
 }
