@@ -15,7 +15,7 @@ const Card = ({fav, category, addFav, removeFav, name, stats}) => {
   });
 
   return (
-    <div className={type} onClick={addRemoveFav}>
+    <div className={`${type} ${category}`} onClick={addRemoveFav}>
       <header>
         <h3 className="card-title">{name}</h3>
       </header>

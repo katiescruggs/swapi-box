@@ -14,6 +14,18 @@
   padding: 15px;
 }
 
+.people header {
+  background-color: #567EE0;
+}
+
+.planets header {
+  background-color: #7EE056;
+}
+
+.vehicles header {
+  background-color: #E07356
+}
+
 .card-title {
   margin: 0;
   text-align: center;

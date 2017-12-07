@@ -11,17 +11,17 @@ const Controls = ({chooseCategory, favorites}) => {
   const favNum = favorites.length;
   return (
     <div className="control-buttons">
-      <button onClick={chooseCategory}>
+      <button className="people-button" onClick={chooseCategory}>
         <MaleIcon className="icon"/>
         people
       </button>
 
-      <button onClick={chooseCategory}>
+      <button className="planets-button" onClick={chooseCategory}>
         <GlobeIcon className="icon"/>
         planets
       </button>
 
-      <button onClick={chooseCategory}>
+      <button className="vehicles-button" onClick={chooseCategory}>
         <AutoIcon className="icon"/>
         vehicles
       </button>

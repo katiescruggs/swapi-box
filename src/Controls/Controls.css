@@ -18,8 +18,19 @@
 }
 
 .control-buttons button:focus {
-  background-color: #DFCC16;
   outline:0;
+}
+
+.people-button:focus {
+  background-color: #567EE0;
+}
+
+.planets-button:focus {
+  background-color: #7EE056;
+}
+
+.vehicles-button:focus {
+  background-color: #E07356;
 }
 
 .icon {
