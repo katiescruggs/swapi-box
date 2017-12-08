@@ -52,7 +52,6 @@ const formatFilm = (filmData, numeral) => {
   const regEx = new RegExp(/\s{3,}/, 'g');
   let crawl = filmData.opening_crawl.replace(regEx, '###');
   crawl = filmData.opening_crawl.split('###');
-
   return {
     episode: `Episode ${numeral}`,
     title: filmData.title.toUpperCase(), 

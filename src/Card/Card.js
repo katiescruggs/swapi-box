@@ -1,11 +1,13 @@
 import React from 'react';
 import './Card.css';
-import StarIcon from 'react-icons/lib/fa/star';
-import OpenStarIcon from 'react-icons/lib/fa/star-o';
+//import StarIcon from 'react-icons/lib/fa/star';
+//import OpenStarIcon from 'react-icons/lib/fa/star-o';
 import MaleIcon from 'react-icons/lib/fa/male';
 import GlobeIcon from 'react-icons/lib/fa/globe';
 import AutoIcon from 'react-icons/lib/fa/automobile';
 import PropTypes from 'prop-types';
+import starEmpty from '../assets/star-empty.svg';
+import starYellow from '../assets/star-yellow.svg';
 
 const Card = ({fav, cardCat, toggleFav, name, stats}) => {
   const categoryIcons = {
@@ -17,8 +19,8 @@ const Card = ({fav, cardCat, toggleFav, name, stats}) => {
   const type = fav ? 'card fav' : 'card';
   const catIcon = categoryIcons[cardCat];
   const star = fav ? 
-    <StarIcon className="fav-star-icon"/> 
-    : <OpenStarIcon className="fav-star-icon open"/>;
+    <img src={starYellow} alt="Favorited"/> 
+    : <img src={starEmpty} alt="Not Favorited" />;
 
   const statKeys = Object.keys(stats);
   const statElements = statKeys.map(statKey => {
@@ -49,7 +51,7 @@ const Card = ({fav, cardCat, toggleFav, name, stats}) => {
 export default Card;
 
 Card.propTypes = {
-  fav: PropTypes.boolean,
+  fav: PropTypes.bool,
   cardCat: PropTypes.string,
   toggleFav: PropTypes.func,
   name: PropTypes.string,
