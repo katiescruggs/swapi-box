@@ -13,10 +13,14 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "eslint": "./node_modules/eslint/bin/eslint.js ./src/*.js"
+    "eslint": "./node_modules/eslint/bin/eslint.js ./src/*/*.js ./src/*.js"
   },
   "devDependencies": {
+    "enzyme": "^3.2.0",
+    "enzyme-adapter-react-16": "^1.1.0",
     "eslint": "^4.12.1",
-    "eslint-plugin-react": "^7.5.1"
+    "eslint-plugin-react": "^7.5.1",
+    "prop-types": "^15.6.0",
+    "react-test-renderer": "^16.2.0"
   }
 }

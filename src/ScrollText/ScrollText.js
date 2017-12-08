@@ -1,10 +1,15 @@
 import React from 'react';
 import './ScrollText.css';
+import PropTypes from 'prop-types';
 
 const ScrollText = ({film}) => {
   
-  const paragraphs = film.crawl.map(paragraph => {
-    return <p className="scroll-p">{paragraph}</p>;
+  const paragraphs = film.crawl.map( (paragraph, index) => {
+    return (
+      <p key={`${paragraph}-${index}`} className="scroll-p">
+        {paragraph}
+      </p>
+    );
   });  
 
   return (
@@ -16,6 +21,10 @@ const ScrollText = ({film}) => {
       </div>
     </div>
   );
-}
+};
 
 export default ScrollText;
+
+ScrollText.propTypes = {
+  film: PropTypes.object
+};
