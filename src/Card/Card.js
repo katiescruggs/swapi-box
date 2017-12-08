@@ -19,8 +19,8 @@ const Card = ({fav, cardCat, toggleFav, name, stats}) => {
   const type = fav ? 'card fav' : 'card';
   const catIcon = categoryIcons[cardCat];
   const star = fav ? 
-    <img src={starYellow} /> 
-    : <img src={starEmpty} />;
+    <img src={starYellow} alt="Favorited"/> 
+    : <img src={starEmpty} alt="Not Favorited" />;
 
   const statKeys = Object.keys(stats);
   const statElements = statKeys.map(statKey => {

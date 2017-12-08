@@ -37,6 +37,6 @@ export default CardContainer;
 
 CardContainer.propTypes = {
   category: PropTypes.string,
-  cardData: PropTypes.object,
+  cardData: PropTypes.array,
   toggleFav: PropTypes.func
 };
