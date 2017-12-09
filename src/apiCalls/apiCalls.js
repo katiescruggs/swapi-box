@@ -93,6 +93,7 @@ const fetchPlanetResidents = async(residents) => {
 };
 
 export const getPeople = async() => {
+  console.log('get people');
   const peopleData = await fetchAndJson('https://swapi.co/api/people');
   return formatPeople(peopleData.results);
 };
