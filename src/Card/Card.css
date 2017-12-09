@@ -4,6 +4,10 @@
   width: 250px;
 }
 
+.card:hover {
+  cursor: pointer;
+}
+
 .card header {
   align-items: center;
   display: flex;
@@ -12,17 +16,15 @@
 }
 
 .people header {
-  background-color: #2AFCFF;
-  background-color: #35ECEF;
-  background-color: #3EDEE1;
+  background-color: #56C3E0;
 }
 
 .planets header {
-  background-color: #33FF88;
+  background-color: #7EE056;
 }
 
 .vehicles header {
-  background-color: #FF4926
+  background-color: #EF4926;
 }
 
 .card-title {

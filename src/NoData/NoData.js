@@ -12,7 +12,7 @@ const NoData = ({category, dataLength}) => {
     <div className="no-data">
       {message}
     </div>
-  )
+  );
 }
 
 export default NoData;
