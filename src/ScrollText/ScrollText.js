@@ -6,7 +6,7 @@ const ScrollText = ({film}) => {
   
   const paragraphs = film.crawl.map( (paragraph, index) => {
     return (
-      <p key={`${paragraph}-${index}`} className="scroll-p">
+      <p key={`paragraph-${index}`} className="scroll-p">
         {paragraph}
       </p>
     );
