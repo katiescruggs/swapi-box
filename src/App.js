@@ -28,15 +28,24 @@ class App extends Component {
 
   async componentDidMount() {
     const film = await getFilm();
-    const people = await getPeople();
-    const planets = await getPlanets();
-    const vehicles = await getVehicles();
+    //const people = await getPeople();
+    //const planets = await getPlanets();
+    //const vehicles = await getVehicles();
 
-    this.setState({film, people, planets, vehicles});
+    this.setState({film});
   }
 
-  chooseCategory = (event) => {
-    this.setState({category: event.target.innerText});
+  chooseCategory = async (event) => {
+    const getData = {
+      people: getPeople,
+      planets: getPlanets,
+      vehicles: getVehicles
+    }
+
+    const category = event.target.innerText;
+    let dataArray = this.state[category].length ? this.state[category] : await getData[category]();
+
+    this.setState({category, [category]: dataArray});
   }
 
   toggleFav = (name, category) => {
