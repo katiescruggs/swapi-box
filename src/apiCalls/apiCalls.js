@@ -52,10 +52,20 @@ const formatFilm = (filmData, numeral) => {
   const regEx = new RegExp(/\s{3,}/, 'g');
   let crawl = filmData.opening_crawl.replace(regEx, '###');
   crawl = filmData.opening_crawl.split('###');
+  
+  const month = {
+    '05': 'May', 
+    '12': 'December'
+  };
+
+  const releaseDate = filmData.release_date.split('-');
+  const date = month[releaseDate[1]] + ' ' + releaseDate[2] + ', ' + releaseDate[0];
+
   return {
     episode: `Episode ${numeral}`,
     title: filmData.title.toUpperCase(), 
-    crawl
+    crawl,
+    date
   };
 };
 
@@ -93,7 +103,6 @@ const fetchPlanetResidents = async(residents) => {
 };
 
 export const getPeople = async() => {
-  console.log('get people');
   const peopleData = await fetchAndJson('https://swapi.co/api/people');
   return formatPeople(peopleData.results);
 };

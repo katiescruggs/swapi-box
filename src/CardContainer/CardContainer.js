@@ -4,8 +4,7 @@ import './CardContainer.css';
 import PropTypes from 'prop-types';
 
 const CardContainer = ({category, cardData, toggleFav}) => {
-  const cards = () => {
-    return cardData.map((datum, index) => {
+  const cards = cardData.map((datum, index) => {
       return (
         <Card
           key={`${category}-${index}`} 
@@ -16,18 +15,12 @@ const CardContainer = ({category, cardData, toggleFav}) => {
           stats={datum.stats} />
       );
     });
-  };
-  
-  const noCardsMessage = 
-    <p className="no-cards-msg">Please select a category</p>;
-
-  const display = cardData ? cards() : noCardsMessage;
 
   return (
     <div className="card-container">
       <h2>{category}</h2>
       <div className="card-holder">
-        {display}
+        {cards}
       </div>
     </div>
   );

@@ -5,6 +5,7 @@ import Header from './Header/Header.js';
 import Controls from './Controls/Controls.js';
 import CardContainer from './CardContainer/CardContainer.js';
 import ScrollText from './ScrollText/ScrollText.js';
+import NoData from './NoData/NoData.js';
 
 import {
   getFilm, 
@@ -28,24 +29,16 @@ class App extends Component {
 
   async componentDidMount() {
     const film = await getFilm();
-    //const people = await getPeople();
-    //const planets = await getPlanets();
-    //const vehicles = await getVehicles();
+    await this.setState({film});
 
-    this.setState({film});
+    const people = await getPeople();
+    const planets = await getPlanets();
+    const vehicles = await getVehicles();
+    await this.setState({people, planets, vehicles});
   }
 
   chooseCategory = async (event) => {
-    const getData = {
-      people: getPeople,
-      planets: getPlanets,
-      vehicles: getVehicles
-    }
-
-    const category = event.target.innerText;
-    let dataArray = this.state[category].length ? this.state[category] : await getData[category]();
-
-    this.setState({category, [category]: dataArray});
+    this.setState({category: event.target.innerText});
   }
 
   toggleFav = (name, category) => {
@@ -64,7 +57,8 @@ class App extends Component {
       <div className="App">
         <header className="app-header">
           <Header />
-          <Controls 
+          <Controls
+            category={category} 
             chooseCategory={this.chooseCategory} 
             favorites={this.state.favorites}
           />
@@ -72,12 +66,15 @@ class App extends Component {
         {this.state.film.crawl && 
           <ScrollText film={film}/>
         }
-        {this.state.people.length > 0 &&
+        {(category && this.state[category].length > 0) &&
           <CardContainer 
             category={category} 
             cardData={this.state[category]} 
             toggleFav={this.toggleFav} 
           />
+        } 
+        {(!category || this.state[category].length === 0) &&
+          <NoData category={category} dataLength={this.state.people.length}/>
         }
       </div>
     );

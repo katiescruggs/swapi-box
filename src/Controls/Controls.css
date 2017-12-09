@@ -15,22 +15,23 @@
 
 .control-buttons button:hover {
   background-color: #FFF16F;
+  cursor: pointer;
 }
 
 .control-buttons button:focus {
   outline:0;
 }
 
-.people-button:focus {
-  background-color: #567EE0;
+.people-button.active {
+  background-color: #56C3E0;
 }
 
-.planets-button:focus {
+.planets-button.active {
   background-color: #7EE056;
 }
 
-.vehicles-button:focus {
-  background-color: #E07356;
+.vehicles-button.active {
+  background-color: #EF4926;
 }
 
 .icon {
