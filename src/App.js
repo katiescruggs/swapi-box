@@ -29,21 +29,16 @@ class App extends Component {
 
   async componentDidMount() {
     const film = await getFilm();
-    this.setState({film});
+    await this.setState({film});
+
+    const people = await getPeople();
+    const planets = await getPlanets();
+    const vehicles = await getVehicles();
+    await this.setState({people, planets, vehicles});
   }
 
   chooseCategory = async (event) => {
-    const getData = {
-      people: getPeople,
-      planets: getPlanets,
-      vehicles: getVehicles,
-      favorites: () => this.state.favorites
-    }
-
-    const category = event.target.innerText;
-    let dataArray = this.state[category].length ? this.state[category] : await getData[category]();
-
-    this.setState({category, [category]: dataArray});
+    this.setState({category: event.target.innerText});
   }
 
   toggleFav = (name, category) => {
@@ -78,7 +73,7 @@ class App extends Component {
           />
         } 
         {(!category || this.state[category].length === 0) &&
-          <NoData category={category}/>
+          <NoData category={category} dataLength={this.state.people.length}/>
         }
       </div>
     );
