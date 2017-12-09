@@ -5,6 +5,7 @@ import Header from './Header/Header.js';
 import Controls from './Controls/Controls.js';
 import CardContainer from './CardContainer/CardContainer.js';
 import ScrollText from './ScrollText/ScrollText.js';
+import NoData from './NoData/NoData.js';
 
 import {
   getFilm, 
@@ -28,10 +29,6 @@ class App extends Component {
 
   async componentDidMount() {
     const film = await getFilm();
-    //const people = await getPeople();
-    //const planets = await getPlanets();
-    //const vehicles = await getVehicles();
-
     this.setState({film});
   }
 
@@ -39,7 +36,8 @@ class App extends Component {
     const getData = {
       people: getPeople,
       planets: getPlanets,
-      vehicles: getVehicles
+      vehicles: getVehicles,
+      favorites: () => this.state.favorites
     }
 
     const category = event.target.innerText;
@@ -72,12 +70,15 @@ class App extends Component {
         {this.state.film.crawl && 
           <ScrollText film={film}/>
         }
-        {this.state.people.length > 0 &&
+        {(category && this.state[category].length > 0) &&
           <CardContainer 
             category={category} 
             cardData={this.state[category]} 
             toggleFav={this.toggleFav} 
           />
+        } 
+        {(!category || this.state[category].length === 0) &&
+          <NoData category={category}/>
         }
       </div>
     );

@@ -8,7 +8,7 @@
   overflow: hidden;
   perspective: 400px;
   width: 600px;
-  animation: addHeight 13s linear;
+  animation: addHeight 14s linear;
 }
 
 .scrolltext-small-container {
@@ -53,4 +53,9 @@
   font-size: 24px;
   text-align: justify;
   line-height: 1.5;
+}
+
+.release-date {
+  margin-top: 20px;
+  text-align: center;
 }

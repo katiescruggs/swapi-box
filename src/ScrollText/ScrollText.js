@@ -18,6 +18,7 @@ const ScrollText = ({film}) => {
         <h4 className="scroll-h4">{film.episode}</h4>
         <h3 className="scroll-h3">{film.title}</h3>
         {paragraphs}
+        <p className="scroll-p release-date">{`Released: ${film.date}`}</p>
       </div>
     </div>
   );
