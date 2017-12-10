@@ -1,3 +1,5 @@
+@import '../variable.scss';
+
 .card {
   background-color: white;
   margin: 20px;
@@ -16,15 +18,15 @@
 }
 
 .people header {
-  background-color: #56C3E0;
+  background-color: $peopleColor;
 }
 
 .planets header {
-  background-color: #7EE056;
+  background-color: $planetsColor;
 }
 
 .vehicles header {
-  background-color: #EF4926;
+  background-color: $vehiclesColor;
 }
 
 .card-title {

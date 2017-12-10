@@ -1,3 +1,5 @@
+@import '../variable.scss';
+
 .control-buttons {
   display: flex;
   justify-content: space-around;
@@ -6,7 +8,7 @@
 }
 
 .control-buttons button {
-  background-color: #FFE919;
+  background-color: $starWarsTextColor;
   border: none;
   color: #000000;
   font-size: 18px;
@@ -14,7 +16,7 @@
 }
 
 .control-buttons button:hover {
-  background-color: #FFF16F;
+  background-color: $starWarsTextHover;
   cursor: pointer;
 }
 
@@ -23,15 +25,15 @@
 }
 
 .people-button.active {
-  background-color: #56C3E0;
+  background-color: $peopleColor;
 }
 
 .planets-button.active {
-  background-color: #7EE056;
+  background-color: $planetsColor;
 }
 
 .vehicles-button.active {
-  background-color: #EF4926;
+  background-color: $vehiclesColor;
 }
 
 .icon {
@@ -39,11 +41,16 @@
 }
 
 .control-buttons .fav-button {
+  background-color: $favoritesColor;
   padding-right: 3px;
 }
 
+.control-buttons .fav-button:hover {
+  background-color: $favoritesHover;
+}
+
 .fav-num {
-  background-color: gray;
+  background-color: $favoritesAccent;
   color: white;
   margin-left: 10px;
   padding: 7px 10px;

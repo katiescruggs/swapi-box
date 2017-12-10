@@ -24,7 +24,6 @@ const buttonInfo = [
   }
 ]
 
-
 const Controls = ({category, chooseCategory, favorites}) => {
 
   const buttons = buttonInfo.map(button => {
