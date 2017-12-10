@@ -18,6 +18,15 @@
   animation: crawl 120s linear;
 }
 
+.fade {
+  background-image: linear-gradient(0deg, transparent, black 75%);
+  position: absolute;
+  height: 120px;
+  top: -25px;
+  width: 100%;
+  z-index: 1;
+}
+
 @keyframes crawl {
   0% {
     top: 0;

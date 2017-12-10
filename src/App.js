@@ -20,6 +20,7 @@ class App extends Component {
     this.state = {
       film: {},
       category: null,
+      errorStatus: false,
       people: [],
       planets: [],
       vehicles: [],
@@ -28,13 +29,28 @@ class App extends Component {
   }
 
   async componentDidMount() {
-    const film = await getFilm();
-    await this.setState({film});
+    await this.getInitialFilmData();
+    await this.getInitialCardData();
+  }
 
-    const people = await getPeople();
-    const planets = await getPlanets();
-    const vehicles = await getVehicles();
-    await this.setState({people, planets, vehicles});
+  getInitialFilmData = async () => {
+    try {
+      const film = await getFilm();
+      this.setState({film});
+    } catch(error) {
+      this.setState({errorStatus: true});
+    }
+  }
+
+  getInitialCardData = async () => {
+    try {
+      const people = await getPeople();
+      const planets = await getPlanets();
+      const vehicles = await getVehicles();
+      this.setState({people, planets, vehicles});
+    } catch(error) {
+      this.setState({errorStatus: true});
+    }
   }
 
   chooseCategory = async (event) => {
