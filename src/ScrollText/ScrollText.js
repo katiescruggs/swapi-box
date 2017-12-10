@@ -14,6 +14,7 @@ const ScrollText = ({film}) => {
 
   return (
     <div className="scrolltext-big-container">
+      <div className="fade"></div>
       <div className="scrolltext-small-container">
         <h4 className="scroll-h4">{film.episode}</h4>
         <h3 className="scroll-h3">{film.title}</h3>

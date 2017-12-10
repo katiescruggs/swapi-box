@@ -1,6 +1,6 @@
-const fetchAndJson = async(apiUrl) => {
-  const initialFetch = await fetch(apiUrl);
-  return initialFetch.json();
+export const fetchAndJson = async(apiUrl) => {
+    const initialFetch = await fetch(apiUrl);
+    return initialFetch.json();
 };
 
 export const getVehicles = async() => {
@@ -26,8 +26,7 @@ const formatVehicles = (vehiclesArray) => {
 
 export const getFilm = async() => {
   const { digit, numeral } = getRandomFilmNumber();
-  const fetchFilm = await fetch(`https://swapi.co/api/films/${digit}`);
-  const filmData = await fetchFilm.json();
+  const filmData = await fetchAndJson(`https://swapi.co/api/films/${digit}`);
   return formatFilm(filmData, numeral);
 };
 
@@ -51,7 +50,7 @@ const getRandomFilmNumber = () => {
 const formatFilm = (filmData, numeral) => {
   const regEx = new RegExp(/\s{3,}/, 'g');
   let crawl = filmData.opening_crawl.replace(regEx, '###');
-  crawl = filmData.opening_crawl.split('###');
+  crawl = crawl.split('###');
   
   const month = {
     '05': 'May', 
@@ -94,7 +93,7 @@ const formatPlanets = (planetsArray) => {
   return Promise.all(unresolvedPromises);
 };
 
-const fetchPlanetResidents = async(residents) => {
+export const fetchPlanetResidents = async(residents) => {
   const unresolvedResidents = residents.map(async (resident) => {
     const residentData = await fetchAndJson(resident);
     return residentData.name;
