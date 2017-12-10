@@ -31,6 +31,7 @@ class App extends Component {
   async componentDidMount() {
     await this.getInitialFilmData();
     await this.getInitialCardData();
+    this.updateLocalStorage();
   }
 
   getInitialFilmData = async () => {
@@ -44,27 +45,37 @@ class App extends Component {
 
   getInitialCardData = async () => {
     try {
-      const people = await getPeople();
-      const planets = await getPlanets();
-      const vehicles = await getVehicles();
-      this.setState({people, planets, vehicles});
+      const people = JSON.parse(localStorage.getItem('people')) || await getPeople();
+      const planets = JSON.parse(localStorage.getItem('planets')) || await getPlanets();
+      const vehicles = JSON.parse(localStorage.getItem('vehicles')) || await getVehicles();
+      const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+   
+      this.setState({people, planets, vehicles, favorites});
     } catch(error) {
       this.setState({errorStatus: true});
     }
+  }
+
+  updateLocalStorage() {
+    localStorage.setItem('people', JSON.stringify(this.state.people));
+    localStorage.setItem('planets', JSON.stringify(this.state.planets));
+    localStorage.setItem('vehicles', JSON.stringify(this.state.vehicles));
+    localStorage.setItem('favorites', JSON.stringify(this.state.favorites));
   }
 
   chooseCategory = async (event) => {
     await this.setState({category: event.target.innerText});
   }
 
-  toggleFav = (name, category) => {
+  toggleFav = async (name, category) => {
     const favCard = this.state[category].find(item => item.name === name);
     favCard.fav = !favCard.fav;
 
     const newFavorites = favCard.fav ? 
       [...this.state.favorites, favCard] 
       : this.state.favorites.filter(fav => fav.name !== name);
-    this.setState({favorites: newFavorites});
+    await this.setState({favorites: newFavorites});
+    this.updateLocalStorage();
   }
 
   render() {

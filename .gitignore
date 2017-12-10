@@ -23,3 +23,5 @@ yarn-error.log*
 package-lock.json
 
 *.css
+
+!index.css
