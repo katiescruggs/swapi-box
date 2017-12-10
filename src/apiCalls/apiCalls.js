@@ -1,4 +1,4 @@
-const fetchAndJson = async(apiUrl) => {
+export const fetchAndJson = async(apiUrl) => {
     const initialFetch = await fetch(apiUrl);
     return initialFetch.json();
 };
@@ -93,7 +93,7 @@ const formatPlanets = (planetsArray) => {
   return Promise.all(unresolvedPromises);
 };
 
-const fetchPlanetResidents = async(residents) => {
+export const fetchPlanetResidents = async(residents) => {
   const unresolvedResidents = residents.map(async (resident) => {
     const residentData = await fetchAndJson(resident);
     return residentData.name;
