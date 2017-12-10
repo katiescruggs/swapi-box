@@ -54,7 +54,7 @@ class App extends Component {
   }
 
   chooseCategory = async (event) => {
-    this.setState({category: event.target.innerText});
+    await this.setState({category: event.target.innerText});
   }
 
   toggleFav = (name, category) => {

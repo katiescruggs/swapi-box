@@ -1,5 +1,7 @@
+@import '../variable.scss';
+
 .scrolltext-big-container {
-  color: #FFE919;
+  color: $starWarsTextColor;
   display: flex;
   justify-content: center;
   margin: 0 auto;
