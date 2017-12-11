@@ -29,8 +29,11 @@ describe('Card', () => {
     expect(renderedCard).toBeDefined();
   });
 
-  it('should match the snapshot', () => {
-    //ADD SNAPSHOTSSSSSSS
+  it('should render an icon, h3, img, and ul', () => {
+    expect(renderedCard.find('.cat-icon').length).toEqual(1);
+    expect(renderedCard.find('h3').length).toEqual(1);
+    expect(renderedCard.find('img').length).toEqual(1);
+    expect(renderedCard.find('ul').length).toEqual(1);
   });
 
   it('has classes of fav and category', () => {
