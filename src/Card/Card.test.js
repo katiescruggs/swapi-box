@@ -9,7 +9,7 @@ const mockStatsTwo = {
   species: 'Human',
   language: 'Galactic Basic',
   population: 200000000
-}
+};
 
 let renderedCard;
 
@@ -30,7 +30,7 @@ describe('Card', () => {
   });
 
   it('should match the snapshot', () => {
-//ADD SNAPSHOTSSSSSSS
+    //ADD SNAPSHOTSSSSSSS
   });
 
   it('has classes of fav and category', () => {
@@ -38,7 +38,7 @@ describe('Card', () => {
     expect(renderedCard.hasClass('people')).toEqual(true); 
   });
 
-  it('renders a number of li\s based on stats', () => {
+  it('renders a number of lis based on stats', () => {
     expect(renderedCard.find('li').length).toEqual(2);
     
     const renderedCard2 = shallow(

@@ -1,3 +1,5 @@
+/* eslint-disable camelcase */
+
 import {
   fetchAndJson,
   getFilm,
@@ -15,7 +17,7 @@ describe('fetchAndJson', () => {
           genericData: 'I am data!'
         }
       )
-    }))
+    }));
   });
 
   it('should be a function', () => {
@@ -36,13 +38,15 @@ describe('getFilm', () => {
       json: () => Promise.resolve(
         mockFilmResults
       )
-    }))
+    }));
 
-    const mockFilmResults = {
-              title: 'I am a title',
-              release_date: '2017-05-30',
-              opening_crawl: 'I am a crawl'
-            }
+    const mockFilmResults = 
+      {
+        title: 'I am a title',
+
+        release_date: '2017-05-30',
+        opening_crawl: 'I am a crawl'
+      };
   });
 
   it('should be a function', () => {
@@ -77,16 +81,16 @@ describe('getPeople', () => {
           results: mockPeopleResults
         }
       )
-    }))
+    }));
 
     const mockPeopleResults = [
-        {
-          name: 'Luke Skywalker'
-        },
-        {
-          name: 'Leia Organa'
-        }
-      ];
+      {
+        name: 'Luke Skywalker'
+      },
+      {
+        name: 'Leia Organa'
+      }
+    ];
   });
 
   it('should be a function', () => {
@@ -134,11 +138,11 @@ describe('getPlanets', () => {
   beforeAll(() => {
     window.fetch = jest.fn().mockImplementation(() => Promise.resolve({
       json: () => Promise.resolve(
-      {
-        results: mockPlanetsResults
-      }
+        {
+          results: mockPlanetsResults
+        }
       )
-    }))
+    }));
 
     const mockPlanetsResults = [
       {
@@ -155,8 +159,9 @@ describe('getPlanets', () => {
         climate: 'cold',
         residents: []
       }
-    ]
-  })
+    ];
+  });
+
   it('should be a function', () => {
     expect(getPlanets).toBeAFunction;
   });
@@ -191,7 +196,7 @@ describe('getPlanets', () => {
         fav: false,
         cardCat: 'planets'
       }
-    ]
+    ];
 
     expect(planetsData).toEqual(mockFormattedPlanets);
   });
@@ -201,11 +206,11 @@ describe('getVehicles', () => {
   beforeAll(() => {
     window.fetch = jest.fn().mockImplementation(() => Promise.resolve({
       json: () => Promise.resolve(
-      {
-        results: mockVehiclesResults
-      }
+        {
+          results: mockVehiclesResults
+        }
       )
-    }))
+    }));
 
     const mockVehiclesResults = [
       {
@@ -269,7 +274,7 @@ describe('fetchPlanetResidents', () => {
           name: 'I am a resident name'
         }
       )
-    }))
+    }));
   });
 
   it('should be a function', () => {

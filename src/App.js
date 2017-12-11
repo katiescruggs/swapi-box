@@ -38,20 +38,24 @@ class App extends Component {
     try {
       const film = await getFilm();
       this.setState({film});
-    } catch(error) {
+    } catch (error) {
       this.setState({errorStatus: true});
     }
   }
 
+  parseFromStorage = (key) => {
+    return JSON.parse(localStorage.getItem(key));
+  }
+
   getInitialCardData = async () => {
     try {
-      const people = JSON.parse(localStorage.getItem('people')) || await getPeople();
-      const planets = JSON.parse(localStorage.getItem('planets')) || await getPlanets();
-      const vehicles = JSON.parse(localStorage.getItem('vehicles')) || await getVehicles();
-      const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+      const people = this.parseFromStorage('people') || await getPeople();
+      const planets = this.parseFromStorage('planets') || await getPlanets();
+      const vehicles = this.parseFromStorage('vehicles') || await getVehicles();
+      const favorites = this.parseFromStorage('favorites') || [];
    
       this.setState({people, planets, vehicles, favorites});
-    } catch(error) {
+    } catch (error) {
       this.setState({errorStatus: true});
     }
   }
@@ -64,7 +68,10 @@ class App extends Component {
   }
 
   chooseCategory = async (event) => {
-    await this.setState({category: event.target.innerText});
+    const category = (typeof event === "object") 
+      ? event.target.closest('button').innerText
+      : event;
+    await this.setState({category});
   }
 
   toggleFav = async (name, category) => {

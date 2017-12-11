@@ -7,7 +7,7 @@ const mockFilm = {
   title: 'Attack of the Clones',
   crawl: ['Paragraph 1', 'Paragraph 2', 'Paragraph 3'],
   date: 'May 25, 2000'
-}
+};
 
 let renderedScrollText;
 

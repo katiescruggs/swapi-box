@@ -5,16 +5,16 @@ import PropTypes from 'prop-types';
 
 const CardContainer = ({category, cardData, toggleFav}) => {
   const cards = cardData.map((datum, index) => {
-      return (
-        <Card
-          key={`${category}-${index}`} 
-          fav={datum.fav}
-          cardCat={datum.cardCat} 
-          toggleFav={toggleFav} 
-          name={datum.name}
-          stats={datum.stats} />
-      );
-    });
+    return (
+      <Card
+        key={`${category}-${index}`} 
+        fav={datum.fav}
+        cardCat={datum.cardCat} 
+        toggleFav={toggleFav} 
+        name={datum.name}
+        stats={datum.stats} />
+    );
+  });
 
   return (
     <div className="card-container">
