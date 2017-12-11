@@ -2,13 +2,17 @@ import React from 'react';
 import './NoData.css';
 import PropTypes from 'prop-types';
 
-const NoData = ({category, dataLength}) => {
+const NoData = ({error, category, dataLength}) => {
   let message = category 
     ? `No favorites to display!` 
     : 'Please select a category.';
 
   if (!dataLength) {
     message = 'Loading data... Please wait.';
+  }
+
+  if(error) {
+    message = 'Error loading data. Please refresh the page.';
   }
 
   return (

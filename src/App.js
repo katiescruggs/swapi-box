@@ -36,7 +36,7 @@ class App extends Component {
 
   getInitialFilmData = async () => {
     try {
-      const film = await getFilm();
+      const film = this.parseFromStorage('film') || await getFilm();
       this.setState({film});
     } catch (error) {
       this.setState({errorStatus: true});
@@ -86,7 +86,7 @@ class App extends Component {
   }
 
   render() {
-    const {category, film} = this.state;
+    const {errorStatus, category, film} = this.state;
     return (
       <div className="App">
         <header className="app-header">
@@ -108,7 +108,10 @@ class App extends Component {
           />
         } 
         {(!category || this.state[category].length === 0) &&
-          <NoData category={category} dataLength={this.state.people.length}/>
+          <NoData 
+            error={errorStatus}
+            category={category} 
+            dataLength={this.state.vehicles.length}/>
         }
       </div>
     );
