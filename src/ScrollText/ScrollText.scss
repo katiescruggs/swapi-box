@@ -1,7 +1,7 @@
 @import '../variable.scss';
 
 .scrolltext-big-container {
-  animation: addHeight 14s linear;
+  animation: addHeight 16s linear;
   color: $starWarsTextColor;
   display: flex;
   height: 0px;
@@ -73,6 +73,7 @@
 
 @media screen and (max-width: 600px) {
   .scrolltext-big-container {
+    animation: addHeight 26s linear;
     width: 300px;
   }
 }
