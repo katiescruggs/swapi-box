@@ -7,12 +7,12 @@ const NoData = ({error, category, dataLength}) => {
     ? `No favorites to display!` 
     : 'Please select a category.';
 
-  if (!dataLength) {
-    message = 'Loading data... Please wait.';
+  if (error) {
+    message = 'Error loading data. Please refresh the page.';
   }
 
-  if(error) {
-    message = 'Error loading data. Please refresh the page.';
+  if (!dataLength) {
+    message = 'Loading data... Please wait.';
   }
 
   return (
@@ -25,6 +25,7 @@ const NoData = ({error, category, dataLength}) => {
 export default NoData;
 
 NoData.propTypes = {
+  error: PropTypes.bool,
   category: PropTypes.string,
   dataLength: PropTypes.number
 };
