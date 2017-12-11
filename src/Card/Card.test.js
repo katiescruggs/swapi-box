@@ -55,4 +55,14 @@ describe('Card', () => {
 
     expect(renderedCard2.find('li').length).toEqual(4);
   });
+
+  it('should run toggleFav function on click', () => {
+    expect(mockToggleFav.mock.calls.length).toEqual(0);
+
+    renderedCard.simulate('click', renderedCard.name, renderedCard.cardCat);
+    expect(mockToggleFav.mock.calls.length).toEqual(1);
+
+    renderedCard.simulate('click', renderedCard.name, renderedCard.cardCat);
+    expect(mockToggleFav.mock.calls.length).toEqual(2);
+  });
 });

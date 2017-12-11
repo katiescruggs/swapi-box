@@ -15,11 +15,12 @@ describe('Controls', () => {
       />);
   });
 
-  it('should render correctly', () => {
+  it('should exist', () => {
     expect(renderedControls).toBeDefined();
   });
 
-  it('should render 4 buttons', () => {
+  it('should render 4 buttons in a div', () => {
+    expect(renderedControls.find('.control-buttons').length).toEqual(1);
     expect(renderedControls.find('button').length).toEqual(4);
   });
 
@@ -32,11 +33,9 @@ describe('Controls', () => {
     expect(mockChooseCategory.mock.calls.length).toEqual(0);
 
     renderedControls.find('button').first().simulate('click');
-
     expect(mockChooseCategory.mock.calls.length).toEqual(1);
 
     renderedControls.find('button').last().simulate('click');
-
     expect(mockChooseCategory.mock.calls.length).toEqual(2);
   });
 });
