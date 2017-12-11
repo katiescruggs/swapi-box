@@ -3,27 +3,6 @@ export const fetchAndJson = async(apiUrl) => {
   return initialFetch.json();
 };
 
-export const getVehicles = async() => {
-  const vehiclesData = await fetchAndJson('https://swapi.co/api/vehicles');
-  return formatVehicles(vehiclesData.results);
-};
-
-const formatVehicles = (vehiclesArray) => {
-  return vehiclesArray.map(vehicle => {
-    const { name, model, passengers } = vehicle;
-    return {
-      name,
-      stats: {
-        model,
-        class: vehicle.vehicle_class,
-        passengers
-      },
-      fav: false,
-      cardCat: 'vehicles'
-    };
-  });
-};
-
 export const getFilm = async() => {
   const { digit, numeral } = getRandomFilmNumber();
   const filmData = await fetchAndJson(`https://swapi.co/api/films/${digit}`);
@@ -69,6 +48,34 @@ const formatFilm = (filmData, numeral) => {
   };
 };
 
+export const getPeople = async() => {
+  const peopleData = await fetchAndJson('https://swapi.co/api/people');
+  return formatPeople(peopleData.results);
+};
+
+const formatPeople = (peopleArray) => {
+  const unresolvedPromises = peopleArray.map(async (person) => {
+    const {name, homeworld, species} = person;
+
+    let homeworldData = await fetchAndJson(homeworld);
+    let speciesData = await fetchAndJson(species);
+
+    return {
+      name, 
+      stats: {
+        homeworld: homeworldData.name,
+        species: speciesData.name,
+        population: homeworldData.population,
+        language: speciesData.language 
+      },
+      fav: false,
+      cardCat: 'people'
+    };
+  });
+
+  return Promise.all(unresolvedPromises);
+};
+
 export const getPlanets = async() => {
   const planetsData = await fetchAndJson('https://swapi.co/api/planets');
   return formatPlanets(planetsData.results);
@@ -102,30 +109,23 @@ export const fetchPlanetResidents = async(residents) => {
   return await Promise.all(unresolvedResidents);  
 };
 
-export const getPeople = async() => {
-  const peopleData = await fetchAndJson('https://swapi.co/api/people');
-  return formatPeople(peopleData.results);
+export const getVehicles = async() => {
+  const vehiclesData = await fetchAndJson('https://swapi.co/api/vehicles');
+  return formatVehicles(vehiclesData.results);
 };
 
-const formatPeople = (peopleArray) => {
-  const unresolvedPromises = peopleArray.map(async (person) => {
-    const {name, homeworld, species} = person;
-
-    let homeworldData = await fetchAndJson(homeworld);
-    let speciesData = await fetchAndJson(species);
-
+const formatVehicles = (vehiclesArray) => {
+  return vehiclesArray.map(vehicle => {
+    const { name, model, passengers } = vehicle;
     return {
-      name, 
+      name,
       stats: {
-        homeworld: homeworldData.name,
-        species: speciesData.name,
-        population: homeworldData.population,
-        language: speciesData.language 
+        model,
+        class: vehicle.vehicle_class,
+        passengers
       },
       fav: false,
-      cardCat: 'people'
+      cardCat: 'vehicles'
     };
   });
-
-  return Promise.all(unresolvedPromises);
 };

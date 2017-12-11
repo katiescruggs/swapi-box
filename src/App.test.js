@@ -75,8 +75,17 @@ describe('App', () => {
     renderedApp = await mount(<App />);
   });
 
-  it('should render correctly', () => {
+  it('should exist', () => {
     expect(renderedApp).toBeDefined;
+  });
+
+  it('should render its components correctly', () => {
+    expect(renderedApp.find('.App').length).toEqual(1);
+    expect(renderedApp.find('.app-header').length).toEqual(1);
+    expect(renderedApp.find('Header').length).toEqual(1);
+    expect(renderedApp.find('Controls').length).toEqual(1);
+    expect(renderedApp.find('CardContainer').length).toEqual(0);
+    expect(renderedApp.find('NoData').length).toEqual(1);
   });
 
   it('should have a default state', () => {
