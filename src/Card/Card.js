@@ -1,7 +1,5 @@
 import React from 'react';
 import './Card.css';
-//import StarIcon from 'react-icons/lib/fa/star';
-//import OpenStarIcon from 'react-icons/lib/fa/star-o';
 import MaleIcon from 'react-icons/lib/fa/male';
 import GlobeIcon from 'react-icons/lib/fa/globe';
 import AutoIcon from 'react-icons/lib/fa/automobile';

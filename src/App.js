@@ -36,7 +36,7 @@ class App extends Component {
 
   getInitialFilmData = async () => {
     try {
-      const film = await getFilm();
+      const film = this.parseFromStorage('film') || await getFilm();
       this.setState({film});
     } catch (error) {
       this.setState({errorStatus: true});
