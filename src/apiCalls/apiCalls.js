@@ -1,6 +1,6 @@
 export const fetchAndJson = async(apiUrl) => {
-    const initialFetch = await fetch(apiUrl);
-    return initialFetch.json();
+  const initialFetch = await fetch(apiUrl);
+  return initialFetch.json();
 };
 
 export const getVehicles = async() => {
@@ -58,7 +58,8 @@ const formatFilm = (filmData, numeral) => {
   };
 
   const releaseDate = filmData.release_date.split('-');
-  const date = month[releaseDate[1]] + ' ' + releaseDate[2] + ', ' + releaseDate[0];
+  const date = 
+    month[releaseDate[1]] + ' ' + releaseDate[2] + ', ' + releaseDate[0];
 
   return {
     episode: `Episode ${numeral}`,

@@ -10,7 +10,7 @@ const buttonInfo = [
   {
     className: 'people-button',
     text: 'people',
-    icon: <MaleIcon className="icon"/>,
+    icon: <MaleIcon className="icon"/>
   },
   {
     className: 'planets-button',
@@ -22,15 +22,20 @@ const buttonInfo = [
     text: 'vehicles',
     icon: <AutoIcon className="icon"/>
   }
-]
+];
 
 const Controls = ({category, chooseCategory, favorites}) => {
 
-  const buttons = buttonInfo.map(button => {
-    let className = category === button.text ? `${button.className} active`: button.className;
+  const buttons = buttonInfo.map((button, index) => {
+    let className = category === button.text 
+      ? `${button.className} active`: button.className;
 
     return (
-      <button className={className} onClick={chooseCategory}>
+      <button 
+        key={`button ${index}`}
+        className={className} 
+        onClick={chooseCategory}
+      >
         {button.icon}
         {button.text}
       </button>
@@ -57,6 +62,7 @@ const Controls = ({category, chooseCategory, favorites}) => {
 export default Controls;
 
 Controls.propTypes = {
+  category: PropTypes.string,
   chooseCategory: PropTypes.func,
   favorites: PropTypes.array
 };

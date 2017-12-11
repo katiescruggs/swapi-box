@@ -24,7 +24,8 @@ describe('Controls', () => {
   });
 
   it('the fav button should have the number of favs', () => {
-    expect(renderedControls.find('.fav-button').find('span').text()).toEqual('4');
+    const favButton = renderedControls.find('.fav-button');
+    expect(favButton.find('span').text()).toEqual('4');
   });
 
   it('should run the chooseCategory function when a button is clicked', () => {

@@ -10,7 +10,7 @@ global.localStorage = {
   getItem: (key) => {
     return localStorage.result[key];
   }
-}
+};
 
 describe('App', () => {
   it('should render correctly', () => {

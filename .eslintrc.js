@@ -9,7 +9,7 @@ module.exports = {
   ],
   "env": {
     "browser": true,
-    "mocha": true,
+    "jest": true,
     "node": true,
     "es6": true
   },
