@@ -20,8 +20,15 @@ describe('ScrollText', () => {
     expect(renderedScrollText).toBeDefined();
   });
 
-  it('should match snapshot', () => {
-    //ADD SNAPSHOTSSSSS
+  it('render 3 divs, h4, and h3', () => {
+    expect(renderedScrollText.find('div').length).toEqual(3);
+    expect(renderedScrollText.find('.scrolltext-big-container').length)
+      .toEqual(1);
+    expect(renderedScrollText.find('.fade').length).toEqual(1);
+    expect(renderedScrollText.find('.scrolltext-small-container').length)
+      .toEqual(1);
+    expect(renderedScrollText.find('h3').length).toEqual(1);
+    expect(renderedScrollText.find('h4').length).toEqual(1);
   });
 
   it('should map over paragraphs and render them', () => {
