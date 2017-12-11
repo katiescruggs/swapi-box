@@ -183,6 +183,7 @@ describe('App', () => {
   it('should display an error message if errorStatus is true', () => {
     renderedApp.setState({errorStatus: true});
 
-    expect(renderedApp.find('.no-data').text()).toEqual('Error loading data. Please refresh the page.');
+    expect(renderedApp.find('.no-data').text())
+      .toEqual('Error loading data. Please refresh the page.');
   });
 });
