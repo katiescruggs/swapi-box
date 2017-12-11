@@ -25,12 +25,15 @@ describe('Card', () => {
       />);
   });
 
-  it('should render corrrectly', () => {
+  it('should render exist', () => {
     expect(renderedCard).toBeDefined();
   });
 
-  it('should match the snapshot', () => {
-    //ADD SNAPSHOTSSSSSSS
+  it('should render an icon, h3, img, and ul', () => {
+    expect(renderedCard.find('.cat-icon').length).toEqual(1);
+    expect(renderedCard.find('h3').length).toEqual(1);
+    expect(renderedCard.find('img').length).toEqual(1);
+    expect(renderedCard.find('ul').length).toEqual(1);
   });
 
   it('has classes of fav and category', () => {
@@ -51,5 +54,15 @@ describe('Card', () => {
     );
 
     expect(renderedCard2.find('li').length).toEqual(4);
+  });
+
+  it('should run toggleFav function on click', () => {
+    expect(mockToggleFav.mock.calls.length).toEqual(0);
+
+    renderedCard.simulate('click', renderedCard.name, renderedCard.cardCat);
+    expect(mockToggleFav.mock.calls.length).toEqual(1);
+
+    renderedCard.simulate('click', renderedCard.name, renderedCard.cardCat);
+    expect(mockToggleFav.mock.calls.length).toEqual(2);
   });
 });

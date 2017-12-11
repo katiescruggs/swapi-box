@@ -1,10 +1,9 @@
 import React from 'react';
-import './NoData.css';
 import PropTypes from 'prop-types';
 
 const NoData = ({error, category, dataLength}) => {
   let message = category 
-    ? `No favorites to display!` 
+    ? `No favorites to display.` 
     : 'Please select a category.';
 
   if (error) {
