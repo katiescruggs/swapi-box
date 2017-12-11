@@ -64,7 +64,10 @@ class App extends Component {
   }
 
   chooseCategory = async (event) => {
-    await this.setState({category: event.target.innerText});
+    const category = (typeof event === "object") 
+      ? event.target.closest('button').innerText
+      : event;
+    await this.setState({category});
   }
 
   toggleFav = async (name, category) => {

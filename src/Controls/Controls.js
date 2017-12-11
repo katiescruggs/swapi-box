@@ -43,8 +43,8 @@ const Controls = ({category, chooseCategory, favorites}) => {
       {buttons}
 
       <button
-        className="fav-button" 
-        onClick={() => chooseCategory({target: {innerText: 'favorites'}}) }
+        className="fav-button"
+        onClick={() => chooseCategory('favorites')}
       >
         <StarIcon className="icon"/>
         favorites
