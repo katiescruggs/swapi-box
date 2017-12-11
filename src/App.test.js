@@ -171,11 +171,18 @@ describe('App', () => {
     expect(renderedApp.find('.no-data').length).toEqual(0);
   });
 
-  it('should change the errorStatus in the stat', () => {
+  it('should change the errorStatus in the state', async () => {
+    expect(renderedApp.state().errorStatus).toEqual(false);
 
+    savedInStorage.film = undefined;
+    renderedApp = await mount(<App />);
+
+    expect(renderedApp.state().errorStatus).toEqual(true);
   });
 
   it('should display an error message if errorStatus is true', () => {
+    renderedApp.setState({errorStatus: true});
 
+    expect(renderedApp.find('.no-data').text()).toEqual('Error loading data. Please refresh the page.');
   });
 });
