@@ -7,4 +7,9 @@ describe('Header', () => {
     const renderedHeader = shallow(<Header />);
     expect(renderedHeader.find('header').length).toEqual(1);
   });
+
+  it('should have a class of main-header', () => {
+    const renderedHeader = shallow(<Header />);
+    expect(renderedHeader.hasClass('main-header')).toEqual(true);
+  });
 });
