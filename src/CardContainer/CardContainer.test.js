@@ -32,8 +32,14 @@ describe('CardContainer', () => {
     );
   });
 
-  it('should render correctly', () => {
+  it('should exist', () => {
     expect(renderedCardContainer).toBeDefined();
+  });
+
+  it('should have a card-container, h2, $ card-holder', () => {
+    expect(renderedCardContainer.find('.card-container').length).toEqual(1);
+    expect(renderedCardContainer.find('h2').length).toEqual(1);
+    expect(renderedCardContainer.find('.card-holder').length).toEqual(1);
   });
 
   it('should render all the cards it\'s given', () => {

@@ -25,7 +25,7 @@ describe('Card', () => {
       />);
   });
 
-  it('should render corrrectly', () => {
+  it('should render exist', () => {
     expect(renderedCard).toBeDefined();
   });
 
