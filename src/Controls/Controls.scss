@@ -2,9 +2,9 @@
 
 .control-buttons {
   display: flex;
-  justify-content: space-around;
+  flex-wrap: wrap;
+  justify-content: center;
   margin: 0 auto;
-  width: 600px;
 }
 
 .control-buttons button {
@@ -12,6 +12,7 @@
   border: none;
   color: #000000;
   font-size: 18px;
+  margin: 5px;
   padding: 10px 20px;
 }
 
@@ -54,4 +55,15 @@
   color: white;
   margin-left: 10px;
   padding: 7px 10px;
+}
+
+@media screen and (max-width:650px) {
+  .control-buttons button {
+    margin: 2px;
+    padding: 10px;
+  }
+
+  .icon {
+    display: none;
+  }
 }

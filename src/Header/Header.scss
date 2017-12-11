@@ -5,3 +5,10 @@
   background-position: center;
   height: 200px;
 }
+
+@media screen and (max-width: 395px) {
+  .main-header {
+    background-size: 325px;
+    height: 165px;
+  }
+}

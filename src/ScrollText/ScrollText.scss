@@ -70,3 +70,9 @@
   margin-top: 20px;
   text-align: center;
 }
+
+@media screen and (max-width: 600px) {
+  .scrolltext-big-container {
+    width: 300px;
+  }
+}
