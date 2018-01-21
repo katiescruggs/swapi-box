@@ -29,12 +29,24 @@
   background-color: $peopleColor;
 }
 
+.people-button.active:hover {
+  background-color: $peopleHoverColor;
+}
+
 .planets-button.active {
   background-color: $planetsColor;
 }
 
+.planets-button.active:hover {
+  background-color: $planetsHoverColor;
+}
+
 .vehicles-button.active {
   background-color: $vehiclesColor;
+}
+
+.vehicles-button.active:hover {
+  background-color: $vehiclesHoverColor;
 }
 
 .icon {
